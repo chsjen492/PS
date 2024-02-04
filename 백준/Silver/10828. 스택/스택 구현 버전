@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//Array ver
+const int MX = 1000005;
+int dat[MX];
+int pos = 0;
+
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	int N, x;
+	string command;
+    
+    cin>>N;
+	for (int i = 0; i < N; i++) {
+		cin >> command;
+		if (command == "push") {
+			cin >> x;
+			dat[pos]=x;
+			pos++;
+		}
+		if (command == "top"){
+		    if(pos==0)
+		        cout<<-1<<'\n';
+		    else
+		        cout<<dat[pos-1]<<'\n';
+		}
+		if (command == "pop") {
+			if (pos==0)
+				cout << -1 << '\n';
+			else {
+				cout << dat[pos-1] << '\n';
+				pos--;
+			}
+		}
+		if (command == "size")
+			cout << pos << '\n';
+		if (command == "empty") {
+			if (pos==0)
+				cout << 1 << '\n';
+			else
+				cout << 0 << '\n';
+		}
+	}
+
+
+}
