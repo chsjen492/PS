@@ -1,22 +1,56 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
+int arr[500001];
+int n, m;
 
+int lowerIdx(int x){
+    int st = 0;
+    int en = n;
+    
+    while(st!=en){
+        int md = (st+en)/2;
+        if(arr[md]>=x){
+            en=md;
+        }
+        else {
+            st=md+1;
+        }
+    }
+    return st;
+}
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int n, m, tmp;
-	map<int, int> mp;
+int upperIdx(int x){
+    int st = 0;
+    int en = n;
+    
+    while(st!=en){
+        int md = (st+en)/2;
+        if(arr[md]>x){
+            en=md;
+        }
+        else {
+            st=md+1;
+        }
+    }
+    return st;
+}
 
-	cin >> n;
-	for (int i = 0; i < n; i++) {
-		cin >> tmp;
-		mp[tmp]++;
-	}
-	cin >> m;
-	for (int i = 0; i < m; i++) {
-		cin >> tmp;
-		cout << mp[tmp] << " ";
-	}
-
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    sort(arr, arr+n);
+    
+    cin>>m;
+    int fd;
+    for(int i=0;i<m;i++){
+        cin>>fd;
+        cout<<upperIdx(fd)-lowerIdx(fd)<<" ";
+    }
 }
